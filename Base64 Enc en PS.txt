@@ -1,4 +1,4 @@
-
+REM substitute TABLE__TBL for your table a field
 REM ** create an instance of the Java base64 encoder;
 Local JavaObject &encoder = CreateJavaObject("sun.misc.BASE64Encoder");
 REM ** get a reference to a Java class instance for the primitive byte array;
