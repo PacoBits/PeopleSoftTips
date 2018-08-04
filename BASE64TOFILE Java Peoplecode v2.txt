@@ -1,0 +1,14 @@
+Function BASE64DecoderFile(&cadena As string, &LocalFile As string)
+   Local object &oDecoder = CreateJavaObject("sun.misc.BASE64Decoder");
+   
+   Local object &dOut = &oDecoder.decodeBuffer(&cadena);
+   Local object &oDecoded = CreateJavaObject("java.lang.String", &dOut, 0, &dOut.length, "UTF8");
+   
+   
+   &Fichero = CreateJavaObject("java.io.FileOutputStream", &LocalFile);
+   
+   &Fichero.write(&dOut, 0, &dOut.length);
+   &Fichero.close();
+   
+   
+End-Function;

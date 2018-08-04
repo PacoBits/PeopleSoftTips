@@ -1,0 +1,14 @@
+
+REM ** create an instance of the Java base64 encoder;
+Local JavaObject &encoder = CreateJavaObject("sun.misc.BASE64Encoder");
+REM ** get a reference to a Java class instance for the primitive byte array;
+Local JavaObject &arrayClass = GetJavaClass("java.lang.reflect.Array");
+Local JavaObject &bytArrClass = &arrayClass.newInstance(GetJavaClass("java.lang.Byte").TYPE, 0);
+REM ** use reflection to get a reference to the method we want to call;
+Local JavaObject &encodeArgTypes = CreateJavaObject("java.lang.Class[]", &bytArrClass.getClass());
+Local JavaObject &encodeMethod = &encoder.getClass().getMethod("encode", &encodeArgTypes);
+REM ** call the method;
+Local JavaObject &bytes = CreateJavaObject("java.lang.String", TABLE__TBL.DESCR_WBTG.Value).getBytes();
+Local JavaObject &result = &encodeMethod.invoke(&encoder, CreateJavaObject("java.lang.Object[]", &bytes));
+REM ** print the result;
+TABLE__TBL.DESCR_WBTG.Value = TABLE__TBL.DESCR_WBTG.Value | " ---  EN BASE 64 es --- " | Char(13) | &result.toString();

@@ -1,0 +1,16 @@
+Declare Function decodelogtype PeopleCode AMM_DERIVED.XML4_PB FieldChange;
+
+Local string &str;
+Local XmlDoc &xml;
+
+/* Archive is retrieved if the third parameter is set to True. */
+If %Component = Component.AMM_SYNCDETAIL Then
+   &str = %IntBroker.GetSyncLogData(AMM_SYNCLIST.GUID, decodelogtype(AMM_DERIVED.LOGTYPE), False);
+Else
+   If %Component = Component.AMM_ARCHSYNCDETAIL Then
+      &str = %IntBroker.GetSyncLogData(PSIBLOGHDRARCH.GUID, decodelogtype(AMM_DERIVED.LOGTYPE), True);
+   End-If;
+End-If;
+
+AMM_DERIVED.RAWXML4 = &str;
+AMM_DERIVED.RAWXML4.Enabled = False;

@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:m84="http://xmlns.oracle.com/Enterprise/Tools/schemas/M843277.V1">
+   <soapenv:Header>
+<ExternalUserName>USERLOGIN</ExternalUserName>
+<ExternalUserPassword>{V1.1}PASSENCRIPTED</ExternalUserPassword>
+<FROM>ANONYMOUS</FROM>
+  </soapenv:Header>
+   <soapenv:Body>
+      <m84:Get__CompIntfc__MYPEOPLESOFT_CI>
+         <m84:BUSINESS_UNIT>?</m84:BUSINESS_UNIT>
+         <m84:PROJECT_ID>?</m84:PROJECT_ID>
+      </m84:Get__CompIntfc__MYPEOPLESOFT_CI>
+   </soapenv:Body>
+</soapenv:Envelope>
